@@ -15,6 +15,17 @@ require('./config/passport');
 const routesApi = require('./routes/routesApi');
 
 app.use(passport.initialize());
+
+// routes
 app.use('/', routesApi);
 
-app.listen(port, function() { console.log('Listening on port 3000...'); });
+// error handler
+app.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+        res.status(401);
+        res.json({ "message": err.name + ": " + err.message });
+    }
+});
+
+// hey, listen! (Zelda Reference ;-) )
+app.listen(port, function () { console.log('Listening on port 3000...'); });
