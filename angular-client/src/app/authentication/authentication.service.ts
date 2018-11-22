@@ -3,29 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-
-export interface UserDetails {
-  _id: string;
-  email: string;
-  name: string;
-  exp: number;
-  iat: number;
-}
+import { TokenPayload } from './TokenPayload';
+import { UserDetails } from './UserDetails';
 
 interface TokenResponse {
   token: string;
 }
 
-export interface TokenPayload {
-  email: string;
-  password: string;
-  name?: string;
-}
-
-
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 
 export class AuthenticationService {
   private token: string;
