@@ -19,8 +19,9 @@ export class RegisterComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) {}
 
   register() {
+    console.log('Entered component register()');
     this.auth.register(this.userCredentials).subscribe(() => {
-      this.router.navigateByUrl('/auth/test');
+      console.log('returned'); this.router.navigateByUrl('/');
     }, (err) => {
       console.error(err);
     });

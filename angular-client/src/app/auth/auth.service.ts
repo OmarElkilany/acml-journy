@@ -16,8 +16,8 @@ interface TokenResponse {
 export class AuthService {
 
   token: string
-  serverBaseURL: 'http://localhost:3000/'; // TODO: change to environment or config
-
+  serverBaseURL = 'http://localhost:3000/'; // TODO: change to environment or config
+  
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   private saveToken(token: string): void {
@@ -65,12 +65,18 @@ export class AuthService {
   private request(method: 'post' | 'get', type: 'login' | 'register' | 'test',
     user?: TokenPayload): Observable<any> {
     let base;
-
+      console.log('Entered request method');
+      console.log('url: '+ this.serverBaseURL);
     if (method === 'post') {
       base = this.httpClient.post(this.serverBaseURL + type, user);
     } else {
       base = this.httpClient.get(this.serverBaseURL + type,
-        { headers: { Authorization: `Bearer ${this.getToken()}` } });
+        { headers: 
+          { 
+            Authorization: `Bearer ${this.getToken()}`,
+            'Content-Type': 'application/json'
+          } 
+        });
     }
 
     const request = base.pipe(
@@ -86,6 +92,8 @@ export class AuthService {
   }
 
   public register(user: TokenPayload): Observable<any> {
+    console.log('Entered service register');
+    console.log(user);
     return this.request('post', 'register', user);
   }
 

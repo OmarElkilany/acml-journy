@@ -4,13 +4,19 @@ const User = mongoose.model('User');
 
 module.exports.register = function (req, res) {
     var user = new User();
-
+    console.log(req.body);
+	console.log('Entered Register server side.');
     user.name = req.body.name;
     user.email = req.body.email;
 
     user.setPassword(req.body.password);
 
     user.save(function (err) {
+        if(err) { 
+            console.log(err);
+        } else {
+            console.log('saved');
+        }
         var token = user.generateJwt();
         return res.status(200).json({
             "token": token
