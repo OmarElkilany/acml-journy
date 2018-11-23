@@ -7,6 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthService } from './auth/auth.service';
 
+import {
+  MatSidenavModule,
+  MatIconModule,
+  MatToolbarModule,
+  MatListModule,
+  MatButtonModule
+} from '@angular/material/';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -15,7 +23,12 @@ import { AuthService } from './auth/auth.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatListModule,
+    MatButtonModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

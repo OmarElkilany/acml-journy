@@ -1,7 +1,33 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}, {{ name == ''? Guest : name }}!
-  </h1>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div class="main-container" [class.is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="toolbar">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="app-name">Journy</h1>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56">
+      <mat-nav-list>
+        <div class="sidenav-buttons">
+          <button mat-button (click)="goToRegister()" *ngIf="!this.authService.isLoggedIn()"> Register </button>
+          <button mat-button (click)="goToLogin()" *ngIf="!this.authService.isLoggedIn()"> Login </button>
+          <button mat-button (click)="logout()" *ngIf="this.authService.isLoggedIn()"> Logout </button>
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div style="text-align:left">
+        <h1>
+          Welcome to {{ title }},
+          {{ this.authService.isLoggedIn()? this.authService.getUserDetails().name : 'Guest' }}!
+        </h1>
+      </div>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
-<router-outlet></router-outlet>
