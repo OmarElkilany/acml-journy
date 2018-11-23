@@ -1,0 +1,8 @@
+.registeration-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.registeration-container > * {
+    width: 50%;
+}
