@@ -2,22 +2,22 @@ var mongoose = require('mongoose');
 
 var journalSchema = new mongoose.Schema({
     title: {
-		type: String,
-		unique: true,
+        type: String,
+        trim: true,
 		required: true
     },
     creator: {
-        required: true,
+        type: String,
         trim: true,
-        type: String
+        required: true,
     },
     body: {
         required: true,
         type: String
     },
     touchDate: {
-        default: Date.now,
-        type: Date
+        type: Date,
+        default: Date.now
     }
 });
 

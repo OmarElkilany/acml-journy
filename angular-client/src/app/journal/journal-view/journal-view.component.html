@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Journal View</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class>
+      <mat-form-field>
+        <input matInput type="text" [(ngModel)]="title" placeholder="Title">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="text" [(ngModel)]="body" placeholder="Body">
+      </mat-form-field>
+
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button (click)="create()" mat-button>Create</button>
+  </mat-card-actions>
+</mat-card>

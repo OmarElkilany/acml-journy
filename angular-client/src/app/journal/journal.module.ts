@@ -1,0 +1,28 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { JournalRoutingModule } from './journal-routing.module';
+import { JournalViewComponent } from './journal-view/journal-view.component';
+import { JournalService } from './journal.service';
+import { AuthService } from '../auth/auth.service';
+import {
+  MatFormFieldModule,
+  MatInputModule,
+  MatCardModule,
+  MatButtonModule
+} from '@angular/material';
+import { FormsModule } from '@angular/forms';
+
+@NgModule({
+  declarations: [JournalViewComponent],
+  imports: [
+    CommonModule,
+    JournalRoutingModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+    FormsModule
+  ],
+  providers: [JournalService, AuthService]
+})
+export class JournalModule { }
