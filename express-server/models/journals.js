@@ -7,15 +7,14 @@ var journalSchema = new mongoose.Schema(
             unique: true,
             required: true
         },
-        creator: {
-            required: true,
-            trim: true,
-            type: String
-        },
+        creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
         body: {
             required: true,
             type: String
         },
+        tags: {
+            type: [String]
+        }
     },
     {
         timestamps: {
