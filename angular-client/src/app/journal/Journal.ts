@@ -3,5 +3,9 @@ export interface Journal {
     title: string;
     creator: string;
     body: string;
-    touchDate?: Date;
+    tags: string[];
+    timestamps?: {
+        createdAt: Date,
+        updatedAt: Date
+    };
 }

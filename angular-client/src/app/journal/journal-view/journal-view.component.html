@@ -2,19 +2,88 @@
   <mat-card-header>
     <mat-card-title>Journal View</mat-card-title>
   </mat-card-header>
+
   <mat-card-content>
-    <div class>
-      <mat-form-field>
-        <input matInput type="text" [(ngModel)]="title" placeholder="Title">
-      </mat-form-field>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Create Journal</mat-card-title>
+      </mat-card-header>
 
-      <mat-form-field>
-        <input matInput type="text" [(ngModel)]="body" placeholder="Body">
-      </mat-form-field>
+      <mat-card-content>
+        <div class="container">
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="createdJournal.title" placeholder="Title">
+          </mat-form-field>
+          {{ createdJournal.title }}
 
-    </div>
+          <mat-form-field>
+            <textarea matInput type="text" [(ngModel)]="createdJournal.body" placeholder="Body"></textarea>
+          </mat-form-field>
+          {{ createdJournal.body }}
+
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="tagCreate" placeholder="Tag">
+            <button class="button" (click)="addTag(tagCreate, createdJournal); tagCreate = '';" mat-button>Add</button>
+          </mat-form-field>
+
+          <mat-chip-list>
+            <mat-chip *ngFor="let tag of createdJournal.tags" [removable]="true" (removed)="removeTag(tag, createdJournal)">
+              {{ tagCreate }}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button (click)="create()" mat-button>Create</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Get Journal</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="container">
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="retrievedJournalID" placeholder="Journal ID">
+            <button class="button" (click)="retrieve(); retrievedJournalID = '';" mat-button>Retrieve</button>
+          </mat-form-field>
+
+
+
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="retrievedJournal.title" placeholder="Title">
+          </mat-form-field>
+          {{ retrievedJournal.title }}
+
+          <mat-form-field>
+            <textarea matInput type="text" [(ngModel)]="retrievedJournal.body" placeholder="Body"></textarea>
+          </mat-form-field>
+          {{ retrievedJournal.body }}
+
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="tagEdit" placeholder="Tag">
+            <button class="button" (click)="addTag(tagEdit, retrievedJournal); tagEdit = '';" mat-button>Add</button>
+          </mat-form-field>
+
+          <mat-chip-list>
+            <mat-chip *ngFor="let tag of retrievedJournal.tags" [removable]="true" (removed)="removeTag(tag, retrievedJournal)">
+              {{ tag }}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button (click)="edit()" mat-button>Edit</button>
+        <button (click)="delete()" mat-button>Delete</button>
+      </mat-card-actions>
+    </mat-card>
+
+
   </mat-card-content>
-  <mat-card-actions>
-    <button (click)="create()" mat-button>Create</button>
-  </mat-card-actions>
 </mat-card>

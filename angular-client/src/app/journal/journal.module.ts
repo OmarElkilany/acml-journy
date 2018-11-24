@@ -8,7 +8,9 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatCardModule,
-  MatButtonModule
+  MatButtonModule,
+  MatChipsModule,
+  MatIconModule
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 
@@ -21,6 +23,8 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatCardModule,
     MatButtonModule,
+    MatChipsModule,
+    MatIconModule,
     FormsModule
   ],
   providers: [JournalService, AuthService]
