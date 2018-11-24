@@ -69,7 +69,7 @@ module.exports.editJournal = function (req, res, next) {
                 $set: {
                     'title': req.body.title,
                     'body': req.body.body,
-                    'touchDate': Date.now
+                    'tags': req.body.tags
                 }
             },
             function (err) {
@@ -122,10 +122,10 @@ module.exports.deleteJournal = function (req, res, next) {
     });
 };
 
-/*
-$set: {
-    'title': req.body.title,
-    'body': req.body.body,
-    'touchDate': Date.now
+module.exports.search = function (req, res, next) {
+    Journal.find(
+        {
+            tags: { "$all": req.body.tags }
+        }
+    );
 }
-*/
