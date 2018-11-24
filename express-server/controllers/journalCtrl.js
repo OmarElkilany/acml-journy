@@ -69,7 +69,7 @@ module.exports.editJournal = function (req, res, next) {
                 $set: {
                     'title': req.body.title,
                     'body': req.body.body,
-                    'touchDate': Date.now
+                    'tags': req.body.tags
                 }
             },
             function (err) {
