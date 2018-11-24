@@ -122,6 +122,14 @@ module.exports.deleteJournal = function (req, res, next) {
     });
 };
 
+module.exports.search = function (req, res, next) {
+    Journal.find(
+        {
+            tags: { "$all": req.body.tags }
+        }
+    );
+}
+
 /*
 $set: {
     'title': req.body.title,

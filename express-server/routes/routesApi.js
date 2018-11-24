@@ -43,6 +43,8 @@ router.post('/login', authCtrl.login);
 //------------- Authentication Routes ---------------//
 router.get('/journal/getJournal/:journalID', journalCtrl.getJournal);
 
+router.post('journal/search', journalCtrl.search);
+
 router.post('/journal/createJournal', isAuthenticated, journalCtrl.createJournal);
 
 router.patch('/journal/editJournal/:journalID', isAuthenticated, journalCtrl.editJournal);
