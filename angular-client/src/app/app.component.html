@@ -13,9 +13,9 @@
       fixedTopGap="56">
       <mat-nav-list>
         <div class="sidenav-buttons">
-          <button mat-button (click)="goToRegister()" *ngIf="!this.authService.isLoggedIn()"> Register </button>
-          <button mat-button (click)="goToLogin()" *ngIf="!this.authService.isLoggedIn()"> Login </button>
-          <button mat-button (click)="logout()" *ngIf="this.authService.isLoggedIn()"> Logout </button>
+          <button mat-button (click)="goToRegister()" *ngIf="!authService.isLoggedIn()"> Register </button>
+          <button mat-button (click)="goToLogin()" *ngIf="!authService.isLoggedIn()"> Login </button>
+          <button mat-button (click)="logout()" *ngIf="authService.isLoggedIn()"> Logout </button>
         </div>
       </mat-nav-list>
     </mat-sidenav>
@@ -24,7 +24,7 @@
       <div style="text-align:left">
         <h1>
           Welcome to {{ title }},
-          {{ this.authService.isLoggedIn()? this.authService.getUserDetails().name : 'Guest' }}!
+          {{ authService.isLoggedIn()? authService.getUserDetails().name : 'Guest' }}!
         </h1>
       </div>
       <router-outlet></router-outlet>

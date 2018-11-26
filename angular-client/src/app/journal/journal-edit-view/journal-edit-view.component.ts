@@ -13,6 +13,7 @@ export class JournalEditViewComponent implements OnInit {
   journal: Journal;
   journalID: string;
   tag: string;
+  mode: string;
 
   constructor(private journalService: JournalService, private authService: AuthService, private router: Router) { }
 
@@ -26,6 +27,7 @@ export class JournalEditViewComponent implements OnInit {
 
     this.journalID = '';
     this.tag = '';
+    this.mode = '';
   }
 
   create() {
