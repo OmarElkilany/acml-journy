@@ -10,6 +10,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const compression = require('compression');
 
 require('./api/models/users');
 require('./api/models/journals');
@@ -19,6 +20,7 @@ const router = require('./api/routes/index');
 
 // create a link to angular build directory
 var distDir = path.join(__dirname, '/dist/');
+console.log('AAAAAAAAAAAAAAa' + distDir);
 app.use(express.static(distDir));
 
 // initialize passport
@@ -30,6 +32,7 @@ app.use(cors({
 	origin: true
 }));
 
+app.use(compression());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cookieParser());
