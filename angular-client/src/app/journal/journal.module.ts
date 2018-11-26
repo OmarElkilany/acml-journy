@@ -13,9 +13,10 @@ import {
   MatIconModule
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { JournalEditViewComponent } from './journal-edit-view/journal-edit-view.component';
 
 @NgModule({
-  declarations: [JournalViewComponent],
+  declarations: [JournalViewComponent, JournalEditViewComponent],
   imports: [
     CommonModule,
     JournalRoutingModule,

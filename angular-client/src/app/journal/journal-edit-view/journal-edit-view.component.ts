@@ -5,12 +5,11 @@ import { AuthService } from '../../auth/auth.service';
 import { Journal } from '../Journal';
 
 @Component({
-  selector: 'app-journal-view',
-  templateUrl: './journal-view.component.html',
-  styleUrls: ['./journal-view.component.css']
+  selector: 'app-journal-edit-view',
+  templateUrl: './journal-edit-view.component.html',
+  styleUrls: ['./journal-edit-view.component.css']
 })
-export class JournalViewComponent implements OnInit {
-
+export class JournalEditViewComponent implements OnInit {
   journal: Journal;
   journalID: string;
   tag: string;
@@ -29,18 +28,13 @@ export class JournalViewComponent implements OnInit {
     this.tag = '';
   }
 
-  retrieve() {
-    this.journalService.getJournal(this.journalID).subscribe(res => {
-      this.journal = res.data;
-    });
-  }
-
-  delete() {
+  create() {
     let user = this.authService.getUserDetails();
     if (user) {
-      this.journalService.deleteJournal(this.journal._id, user._id).subscribe(res => {
+      this.journal.creator = user._id;
+      this.journalService.createJournal(this.journal).subscribe(res => {
       });
-      this.router.navigateByUrl('/journal/edit');
+      this.router.navigateByUrl('/journal/view');
     } else {
       this.router.navigateByUrl('/auth/login');
     }
@@ -49,7 +43,9 @@ export class JournalViewComponent implements OnInit {
   edit() {
     let user = this.authService.getUserDetails();
     if (user) {
-      this.router.navigateByUrl('/journal/edit/' + this.journalID);
+      this.journal.creator = user._id;
+      this.journalService.editJournal(this.journal._id, this.journal).subscribe(res => {
+      });
     } else {
       this.router.navigateByUrl('/auth/login');
     }
