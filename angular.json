@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-client": {
+    "acml-journy": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -57,18 +57,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-client:build"
+            "browserTarget": "acml-journy:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-client:build:production"
+              "browserTarget": "acml-journy:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-client:build"
+            "browserTarget": "acml-journy:build"
           }
         },
         "test": {
@@ -102,7 +102,7 @@
         }
       }
     },
-    "angular-client-e2e": {
+    "acml-journy-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -111,11 +111,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-client:serve"
+            "devServerTarget": "acml-journy:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-client:serve:production"
+              "devServerTarget": "acml-journy:serve:production"
             }
           }
         },
@@ -131,5 +131,5 @@
       }
     }
   },
-  "defaultProject": "angular-client"
+  "defaultProject": "acml-journy"
 }
