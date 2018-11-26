@@ -8,10 +8,11 @@ const auth = jwt({
 
 const testCtrl = require('../controllers/testCtrl');
 const authCtrl = require('../controllers/authentication');
+const journalCtrl = require('../controllers/journalCtrl');
 
 const router = express.Router();
 
-router.get('/', function(req, res, next) { res.send('Server is working, boy.'); });
+router.get('/', function (req, res, next) { res.send('Server is working, boy.'); });
 
 // test example
 router.get('/test', auth, testCtrl.testMethod);
@@ -20,6 +21,18 @@ router.get('/test', auth, testCtrl.testMethod);
 router.post('/register', authCtrl.register);
 
 router.post('/login', authCtrl.login);
+//---------------------------------------------------//
+
+//------------- Authentication Routes ---------------//
+router.get('/journal/getJournal/:journalID', journalCtrl.getJournal);
+
+router.post('journal/search', journalCtrl.search);
+
+router.post('/journal/createJournal', journalCtrl.createJournal);
+
+router.patch('/journal/editJournal/:journalID', journalCtrl.editJournal);
+
+router.delete('/journal/deleteJournal/:journalID/:user', journalCtrl.deleteJournal);
 //---------------------------------------------------//
 
 module.exports = router;

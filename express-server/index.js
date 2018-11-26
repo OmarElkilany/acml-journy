@@ -13,6 +13,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 
 require('./models/users');
+require('./models/journals');
 require('./config/passport');
 
 const routesApi = require('./routes/routesApi');
