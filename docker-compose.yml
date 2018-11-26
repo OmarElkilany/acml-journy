@@ -1,0 +1,15 @@
+version: '2.1'
+
+services:
+ server:
+  build: ./
+  depends_on:
+   database:
+    condition: service_healthy
+  ports:
+   - "3000:3000"
+
+ database:
+  image: healthcheck/mongo
+  ports:
+   - "27017:27017"
