@@ -5,11 +5,11 @@ import { JournalModule } from './journal/journal.module';
 const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: () => AuthModule
+    loadChildren: './auth/auth.module#AuthModule'
   },
   {
     path: 'journal',
-    loadChildren: () => JournalModule
+    loadChildren: './journal/journal.module#JournalModule'
   }
 ];
 
