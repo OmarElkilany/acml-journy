@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JournalRoutingModule } from './journal-routing.module';
-import { JournalViewComponent } from './journal-view/journal-view.component';
 import { JournalService } from './journal.service';
+import { JournalViewComponent } from './journal-view/journal-view.component';
+import { JournalEditViewComponent } from './journal-edit-view/journal-edit-view.component';
 import { AuthService } from '../auth/auth.service';
+import { FormsModule } from '@angular/forms';
+import { QuillModule } from 'ngx-quill'
 import {
   MatFormFieldModule,
   MatInputModule,
@@ -12,8 +15,6 @@ import {
   MatChipsModule,
   MatIconModule
 } from '@angular/material';
-import { FormsModule } from '@angular/forms';
-import { JournalEditViewComponent } from './journal-edit-view/journal-edit-view.component';
 
 @NgModule({
   declarations: [JournalViewComponent, JournalEditViewComponent],
@@ -26,7 +27,8 @@ import { JournalEditViewComponent } from './journal-edit-view/journal-edit-view.
     MatButtonModule,
     MatChipsModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    QuillModule
   ],
   providers: [JournalService, AuthService]
 })

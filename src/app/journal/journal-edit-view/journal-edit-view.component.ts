@@ -15,6 +15,31 @@ export class JournalEditViewComponent implements OnInit {
   tag: string;
   mode: string;
 
+  // Text Editor - Quill
+  modules: object = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      ['blockquote', 'code-block'],
+
+      [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+      [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
+      [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+      [{ 'direction': 'rtl' }],                         // text direction
+
+      [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+      [{ 'font': [] }],
+      [{ 'align': [] }],
+
+      ['clean'],                                         // remove formatting button
+
+      ['link', 'image', 'video']                         // link and image, video
+    ]
+  };
+
   constructor(
     private journalService: JournalService,
     private authService: AuthService,
@@ -54,8 +79,11 @@ export class JournalEditViewComponent implements OnInit {
     if (user) {
       this.journal.creator = user._id;
       this.journalService.createJournal(this.journal).subscribe(res => {
+        if (!res.err)
+          this.router.navigateByUrl('/journal/view/' + res.journalID);
+        else
+          alert(res.err);
       });
-      this.router.navigateByUrl('/journal/view');
     } else {
       this.router.navigateByUrl('/auth/login');
     }

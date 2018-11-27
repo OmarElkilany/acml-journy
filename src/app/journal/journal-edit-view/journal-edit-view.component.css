@@ -1,12 +1,37 @@
-.container {
+.title {
     display: flex;
     flex-direction: column;
 }
 
-.container > * {
-    width: 50%;
+.title > * {
+    width: 30%;
+}
+
+.tag {
+    display: flex;
+    flex-direction: column;
+}
+
+.tag > * {
+    width: 20%;
 }
 
 .button {
     float: right;
+}
+
+/* Style the form - display items horizontally */
+.form-inline { 
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+/* Add some margins for each label */
+.form-inline mat-chip {
+    margin: 5px 10px 5px 0;
+}
+
+.form-inline inline-element {
+    margin: 5px 10px 5px 0;
 }
