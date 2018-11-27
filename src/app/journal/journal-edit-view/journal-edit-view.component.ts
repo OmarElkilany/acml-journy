@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { JournalService } from '../journal.service';
 import { AuthService } from '../../auth/auth.service';
 import { Journal } from '../Journal';
@@ -15,7 +15,12 @@ export class JournalEditViewComponent implements OnInit {
   tag: string;
   mode: string;
 
-  constructor(private journalService: JournalService, private authService: AuthService, private router: Router) { }
+  constructor(
+    private journalService: JournalService,
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     this.journal = {
@@ -28,6 +33,20 @@ export class JournalEditViewComponent implements OnInit {
     this.journalID = '';
     this.tag = '';
     this.mode = '';
+
+    // fetch routing data
+    this.route.url.subscribe(url => {
+      this.mode = url[0].path;
+      if (this.mode === 'edit') {
+        this.route.params.subscribe(params => {
+          this.journalID = params.journalID;
+          // fetch journal
+          this.journalService.getJournal(this.journalID).subscribe(res => {
+            this.journal = res.data;
+          });
+        });
+      }
+    });
   }
 
   create() {

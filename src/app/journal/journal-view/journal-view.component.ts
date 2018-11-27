@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { JournalService } from '../journal.service';
 import { AuthService } from '../../auth/auth.service';
 import { Journal } from '../Journal';
@@ -10,12 +10,16 @@ import { Journal } from '../Journal';
   styleUrls: ['./journal-view.component.css']
 })
 export class JournalViewComponent implements OnInit {
-
   journal: Journal;
-  journalID: string;
   tag: string;
+  owner: boolean;
 
-  constructor(private journalService: JournalService, private authService: AuthService, private router: Router) { }
+  constructor(
+    private journalService: JournalService,
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     this.journal = {
@@ -25,13 +29,18 @@ export class JournalViewComponent implements OnInit {
       tags: []
     }
 
-    this.journalID = '';
     this.tag = '';
-  }
+    this.owner = false;
 
-  retrieve() {
-    this.journalService.getJournal(this.journalID).subscribe(res => {
-      this.journal = res.data;
+    // fetch routing data
+    this.route.params.subscribe(params => {
+      // fetch journal
+      this.journalService.getJournal(params.journalID).subscribe(res => {
+        this.journal = res.data;
+        let user = this.authService.getUserDetails();
+        if (user._id === this.journal.creator)
+          this.owner = true;
+      });
     });
   }
 
@@ -39,8 +48,9 @@ export class JournalViewComponent implements OnInit {
     let user = this.authService.getUserDetails();
     if (user) {
       this.journalService.deleteJournal(this.journal._id, user._id).subscribe(res => {
+        if (!res.err)
+          this.router.navigateByUrl('/journal/create');
       });
-      this.router.navigateByUrl('/journal/edit');
     } else {
       this.router.navigateByUrl('/auth/login');
     }
@@ -49,7 +59,7 @@ export class JournalViewComponent implements OnInit {
   edit() {
     let user = this.authService.getUserDetails();
     if (user) {
-      this.router.navigateByUrl('/journal/edit/' + this.journalID);
+      this.router.navigateByUrl('/journal/edit/' + this.journal._id);
     } else {
       this.router.navigateByUrl('/auth/login');
     }

@@ -30,7 +30,7 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button (click)="create()" mat-button>Create</button>
-    <!--<button (click)="edit()" mat-button>Edit</button>-->
+    <button (click)="create()" mat-button *ngIf="mode === 'create'">Create</button>
+    <button (click)="edit()" mat-button *ngIf="mode === 'edit'">Save</button>
   </mat-card-actions>
 </mat-card>

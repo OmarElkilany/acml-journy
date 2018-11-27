@@ -6,13 +6,6 @@
   <mat-card-content>
     <div class="container">
       <mat-form-field>
-        <input matInput type="text" [(ngModel)]="journalID" placeholder="Journal ID">
-        <button class="button" (click)="retrieve(); journalID = '';" mat-button>Retrieve</button>
-      </mat-form-field>
-
-
-
-      <mat-form-field>
         <input matInput type="text" [(ngModel)]="journal.title" placeholder="Title">
       </mat-form-field>
       {{ journal.title }}
@@ -37,7 +30,7 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <!--<button (click)="edit()" mat-button>Edit</button>-->
-    <button (click)="delete()" mat-button>Delete</button>
+    <button (click)="edit()" mat-button *ngIf="owner">Edit</button>
+    <button (click)="delete()" mat-button *ngIf="owner">Delete</button>
   </mat-card-actions>
 </mat-card>
