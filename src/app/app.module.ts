@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthService } from './auth/auth.service';
 import { DisqusModule, DISQUS_SHORTNAME } from "ngx-disqus";
+import { environment } from '../environments/environment.prod';
 
 import {
   MatSidenavModule,
@@ -42,7 +43,7 @@ import {
     AuthService,
     {
       provide: DISQUS_SHORTNAME,
-      useValue: 'test-aggnui5c7a'
+      useValue: environment.DISQUS_SHORTNAME
     },
     ToastrService
   ],

@@ -1,13 +1,6 @@
 # acml-journy
 The project for the acml course
 
-## Dependencies
-To install all the dependencies for the project:
-1. Go to the acml-journy folder.
-2. Run npm install.
-
-This step can be skipped if you are using docker-compose.
-
 ## Bringing Up the Application with NPM
 Please follow these steps: (Working on Ubuntu)
 1. Navigate to the acml-journy folder.
@@ -16,7 +9,9 @@ Please follow these steps: (Working on Ubuntu)
 
 3. Run: source ./environment.env in the terminal.
 
-4. Run npm start
+4. Run npm install
+
+5. Run npm start
 
 ## Bring Up the Application with Docker Compose
 Please follow these steps: (Working on Ubuntu)
@@ -24,9 +19,9 @@ Please follow these steps: (Working on Ubuntu)
 
 2. Create an environment file (environment.env) and export all the environment variables from it (A complete list of the variables and their purpose is provided below).
 
-3. Execute: source ./environment.env in the terminal.
+3. Run: source ./environment.env in the terminal.
 
-4. Execute: sudo -E docker-compose up --build in the terminal.
+4. Run: sudo -E docker-compose up --build in the terminal.
 
 ## Environment Variables
 Environment Variables to Set:
