@@ -15,9 +15,10 @@ import {
   MatChipsModule,
   MatIconModule
 } from '@angular/material';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
-  declarations: [JournalViewComponent, JournalEditViewComponent],
+  declarations: [JournalViewComponent, JournalEditViewComponent, SearchComponent],
   imports: [
     CommonModule,
     JournalRoutingModule,
