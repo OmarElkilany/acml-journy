@@ -3,6 +3,8 @@ version: '2.1'
 services:
  server:
   build: ./
+  env_file: 
+    - config.env
   depends_on:
    database:
     condition: service_healthy
