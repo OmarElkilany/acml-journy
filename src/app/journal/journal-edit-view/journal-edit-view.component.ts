@@ -80,7 +80,7 @@ export class JournalEditViewComponent implements OnInit {
       this.journal.creator = user._id;
       this.journalService.createJournal(this.journal).subscribe(res => {
         if (!res.err)
-          this.router.navigateByUrl('/journal/view/' + res.journalID);
+          this.router.navigateByUrl('/journal/view/' + res.data);
         else
           alert(res.err);
       });
@@ -94,6 +94,10 @@ export class JournalEditViewComponent implements OnInit {
     if (user) {
       this.journal.creator = user._id;
       this.journalService.editJournal(this.journal._id, this.journal).subscribe(res => {
+        if (!res.err)
+          this.router.navigateByUrl('/journal/view/' + res.data);
+        else
+          alert(res.err);
       });
     } else {
       this.router.navigateByUrl('/auth/login');
