@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JournalRoutingModule } from './journal-routing.module';
 import { JournalService } from './journal.service';
+import { SearchComponent } from './search/search.component';
 import { JournalViewComponent } from './journal-view/journal-view.component';
 import { JournalEditViewComponent } from './journal-edit-view/journal-edit-view.component';
 import { AuthService } from '../auth/auth.service';
 import { FormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill'
+import { DisqusModule } from "ngx-disqus";
 import {
   MatFormFieldModule,
   MatInputModule,
@@ -15,7 +17,6 @@ import {
   MatChipsModule,
   MatIconModule
 } from '@angular/material';
-import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [JournalViewComponent, JournalEditViewComponent, SearchComponent],
@@ -29,7 +30,8 @@ import { SearchComponent } from './search/search.component';
     MatChipsModule,
     MatIconModule,
     FormsModule,
-    QuillModule
+    QuillModule,
+    DisqusModule
   ],
   providers: [JournalService, AuthService]
 })

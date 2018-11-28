@@ -11,13 +11,15 @@
       </mat-form-field>
     </div>
 
-    <quill-editor [style]="{height: '600px'}" [(ngModel)]="journal.body" [modules]="modules"></quill-editor>
+    <quill-editor align=center [(ngModel)]="journal.body" [modules]="modules"></quill-editor>
 
     <div class="form-inline">
       <mat-form-field>
-        <input matInput calss="inline-element" type="text" [(ngModel)]="tag" placeholder="Tag">
+        <input matInput type="text" [(ngModel)]="tag" placeholder="Tag">
       </mat-form-field>
-      <button mat-raised-button calss="inline-element" color="primary" (click)="addTag(tag, journal); tag = '';" mat-button>Add</button>
+      <button mat-raised-button color="primary" (click)="addTag(tag, journal); tag = '';" mat-button>
+        Add
+      </button>
     </div>
 
     <div class="form-inline">

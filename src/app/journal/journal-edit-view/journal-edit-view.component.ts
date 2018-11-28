@@ -27,8 +27,7 @@ export class JournalEditViewComponent implements OnInit {
       [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
       [{ 'direction': 'rtl' }],                         // text direction
 
-      [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      [{ 'size': ['small', 'normal', 'large', 'huge'] }],  // custom dropdown
 
       [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
       [{ 'font': [] }],
@@ -36,7 +35,7 @@ export class JournalEditViewComponent implements OnInit {
 
       ['clean'],                                         // remove formatting button
 
-      ['link', 'image', 'video']                         // link and image, video
+      ['link']                         // link and image, video
     ]
   };
 

@@ -27,11 +27,15 @@
     align-items: center;
 }
 
-/* Add some margins for each label */
+/* Add some margins for each element*/
 .form-inline mat-chip {
     margin: 5px 10px 5px 0;
 }
 
-.form-inline inline-element {
+.form-inline button {
+    margin: 5px 10px 5px 0;
+}
+
+.form-inline mat-form-field {
     margin: 5px 10px 5px 0;
 }

@@ -38,7 +38,7 @@ export class JournalViewComponent implements OnInit {
       this.journalService.getJournal(params.journalID).subscribe(res => {
         this.journal = res.data;
         let user = this.authService.getUserDetails();
-        if (user._id === this.journal.creator)
+        if (user && user._id === this.journal.creator)
           this.owner = true;
       });
     });
