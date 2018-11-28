@@ -3,13 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/';
 import { Router } from '@angular/router';
 import { Journal } from './Journal';
-
+import { environment } from '../../environments/environment.prod';
 @Injectable({
   providedIn: 'root'
 })
 export class JournalService {
 
-  serverBaseURL = process.env.BACKEND_URI;
+  serverBaseURL = environment.BACKEND_URI;
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 

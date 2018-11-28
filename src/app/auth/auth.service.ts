@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators/';
 import { Router } from '@angular/router';
 import { UserDetails } from './UserDetails';
 import { TokenPayload } from './TokenPayload';
+import { environment } from '../../environments/environment.prod';
 interface TokenResponse {
   token: string;
 }
@@ -16,7 +17,7 @@ interface TokenResponse {
 export class AuthService {
 
   token: string
-  serverBaseURL = process.env.BACKEND_URI;
+  serverBaseURL = environment.BACKEND_URI;
   
   constructor(private httpClient: HttpClient, private router: Router) { }
 
