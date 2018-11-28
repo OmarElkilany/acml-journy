@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenPayload } from '../TokenPayload';
 import { AuthService } from '../auth.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,16 +16,25 @@ export class LoginComponent implements OnInit {
     password: ''
   };
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private toastrService: ToastrService) { }
 
   ngOnInit() {
   }
 
   login() {
-    this.auth.login(this.userCredentials).subscribe( () => {
-        this.router.navigateByUrl('/');
-    }, (err) =>{
-      console.log(err);
+
+    if (this.userCredentials.email == '' || this.userCredentials.password == '') {
+      this.toastrService.error('Please fill in all fields.');
+      return;
+    }
+
+    this.auth.login(this.userCredentials).subscribe(() => {
+      this.router.navigateByUrl('/');
+    }, (err) => {
+      this.toastrService.error(err.error.err);
     });
   }
 

@@ -85,7 +85,11 @@ module.exports.login = function (req, res) {
                 "token": token
             });
         } else {
-            res.status(401).json(info);
+            res.status(401).json({
+                data: null,
+                err: 'Please make sure you entered the right email and password',
+                msg: null
+            });
         }
     })(req, res);
 };
