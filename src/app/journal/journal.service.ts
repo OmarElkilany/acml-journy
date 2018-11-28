@@ -9,7 +9,7 @@ import { Journal } from './Journal';
 })
 export class JournalService {
 
-  serverBaseURL = 'http://localhost:3000/'; // TODO: change to environment or config
+  serverBaseURL = process.env.BACKEND_URI;
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 

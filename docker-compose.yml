@@ -1,17 +1,19 @@
 version: '2.1'
-
 services:
  server:
   build: ./
-  env_file: 
-    - config.env
+  environment: 
+    - MONGO_URI=${MONGO_URI}
+    - JWT_SECRET=${JWT_SECRET}
+    - BACKEND_URI=${BACKEND_URI}
+    - DISQUS_SHORTNAME=${DISQUS_SHORTNAME}
   depends_on:
    database:
     condition: service_healthy
   ports:
-   - "3000:3000"
+   - "${SERVER_HOST_PORT}:${SERVER_CONTAINER_PORT}"
 
  database:
   image: healthcheck/mongo
   ports:
-   - "27017:27017"
+   - "${MONGO_HOST_PORT}:${MONGO_CONTAINER_PORT}"

@@ -1,8 +1,7 @@
-// TODO: Use the env variable for the secret
 const express = require('express');
 const jwt = require('express-jwt');
 const auth = jwt({
-    secret: 'secret_env_variable',
+    secret: process.env.JWT_SECRET,
     userProperty: 'payload'
 });
 
