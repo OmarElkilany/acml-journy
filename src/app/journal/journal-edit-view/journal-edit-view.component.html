@@ -1,25 +1,28 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Journal {{ mode }} View</mat-card-title>
+    <mat-card-title *ngIf="mode === 'create'">New journal, new journey...</mat-card-title>
+    <mat-card-title *ngIf="mode === 'edit'">{{ journal.title }}</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
-    <div class="container">
+    <div class="title">
       <mat-form-field>
         <input matInput type="text" [(ngModel)]="journal.title" placeholder="Title">
       </mat-form-field>
-      {{ journal.title }}
+    </div>
 
-      <mat-form-field>
-        <textarea matInput type="text" [(ngModel)]="journal.body" placeholder="Body"></textarea>
-      </mat-form-field>
-      {{ journal.body }}
+    <quill-editor align=center [(ngModel)]="journal.body" [modules]="modules"></quill-editor>
 
+    <div class="form-inline">
       <mat-form-field>
         <input matInput type="text" [(ngModel)]="tag" placeholder="Tag">
-        <button class="button" (click)="addTag(tag, journal); tag = '';" mat-button>Add</button>
       </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addTag(tag, journal); tag = '';" mat-button>
+        Add
+      </button>
+    </div>
 
+    <div class="form-inline">
       <mat-chip-list>
         <mat-chip *ngFor="let tag of journal.tags" [removable]="true" (removed)="removeTag(tag, journal)">
           {{ tag }}
@@ -29,8 +32,8 @@
     </div>
   </mat-card-content>
 
-  <mat-card-actions>
-    <button (click)="create()" mat-button>Create</button>
-    <!--<button (click)="edit()" mat-button>Edit</button>-->
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" (click)="create()" mat-button *ngIf="mode === 'create'">Create</button>
+    <button mat-raised-button color="primary" (click)="edit()" mat-button *ngIf="mode === 'edit'">Save</button>
   </mat-card-actions>
 </mat-card>

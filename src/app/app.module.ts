@@ -7,6 +7,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthService } from './auth/auth.service';
+import { DisqusModule, DISQUS_SHORTNAME } from "ngx-disqus";
 
 import {
   MatSidenavModule,
@@ -34,10 +35,15 @@ import {
     MatIconModule,
     MatToolbarModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    DisqusModule
   ],
   providers: [
     AuthService,
+    {
+      provide: DISQUS_SHORTNAME,
+      useValue: 'test-aggnui5c7a'
+    },
     ToastrService
   ],
   bootstrap: [AppComponent]

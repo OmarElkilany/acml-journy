@@ -15,6 +15,7 @@
         <div class="sidenav-buttons">
           <button mat-button (click)="goToRegister()" *ngIf="!authService.isLoggedIn()"> Register </button>
           <button mat-button (click)="goToLogin()" *ngIf="!authService.isLoggedIn()"> Login </button>
+          <button mat-button (click)="goToJournalCreation()" *ngIf="authService.isLoggedIn()"> Wirte Journal </button>
           <button mat-button (click)="logout()" *ngIf="authService.isLoggedIn()"> Logout </button>
         </div>
       </mat-nav-list>

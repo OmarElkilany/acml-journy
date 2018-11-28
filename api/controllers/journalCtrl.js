@@ -26,13 +26,13 @@ module.exports.getJournal = function (req, res, next) {
 module.exports.createJournal = function (req, res, next) {
     var journal = req.body;
 
-    Journal.create(journal, function (err) {
+    Journal.create(journal, function (err, createdJournal) {
         if (err) {
             return next(err);
         }
 
         res.status(201).json({
-            data: null,
+            data: createdJournal._id,
             err: null,
             msg: 'Journal created successfully'
         });
@@ -53,13 +53,13 @@ module.exports.editJournal = function (req, res, next) {
                 'tags': req.body.tags
             }
         },
-        function (err) {
+        function (err, editedJournal) {
             if (err) {
                 return next(err);
             }
 
             res.status(201).json({
-                data: null,
+                data: editedJournal._id,
                 err: null,
                 msg: 'Journal editted successfully'
             });
