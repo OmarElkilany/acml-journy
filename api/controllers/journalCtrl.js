@@ -2,6 +2,14 @@ const mongoose = require('mongoose');
 const Journal = mongoose.model('Journal');
 
 module.exports.getJournal = function (req, res, next) {
+    if (!mongoose.Types.ObjectId.isValid(req.params.journalID)) {
+        return res.status(422).json({
+            data: null,
+            err: 'Journal does not exist',
+            msg: null
+        });
+    }
+
     Journal.findById(req.params.journalID, function (err, journal) {
         if (err) {
             return next(err);
@@ -26,6 +34,16 @@ module.exports.getJournal = function (req, res, next) {
 module.exports.createJournal = function (req, res, next) {
     var journal = req.body;
 
+    if (!(journal && journal.title &&
+        journal.creator && journal.body &&
+        Array.isArray(journal.tags) && journal.tags.length)) {
+        return res.status(422).json({
+            data: null,
+            err: 'Journal was incomplete',
+            msg: null
+        });
+    }
+
     Journal.create(journal, function (err, createdJournal) {
         if (err) {
             return next(err);
@@ -40,7 +58,26 @@ module.exports.createJournal = function (req, res, next) {
 };
 
 module.exports.editJournal = function (req, res, next) {
+    if (!mongoose.Types.ObjectId.isValid(req.params.journalID)) {
+        return res.status(422).json({
+            data: null,
+            err: 'Journal does not exist',
+            msg: null
+        });
+    }
+
     var journal = req.body;
+
+    if (!(journal && journal.title &&
+        journal.creator && journal.body &&
+        Array.isArray(journal.tags) && journal.tags.length)) {
+        return res.status(422).json({
+            data: null,
+            err: 'Journal was incomplete',
+            msg: null
+        });
+    }
+
     Journal.findOneAndUpdate(
         {
             '_id': req.params.journalID,
@@ -68,7 +105,21 @@ module.exports.editJournal = function (req, res, next) {
 };
 
 module.exports.deleteJournal = function (req, res, next) {
+    if (!mongoose.Types.ObjectId.isValid(req.params.user)) {
+        return res.status(422).json({
+            data: null,
+            err: 'User does not exist',
+            msg: null
+        });
+    }
 
+    if (!mongoose.Types.ObjectId.isValid(req.params.journalID)) {
+        return res.status(422).json({
+            data: null,
+            err: 'Journal does not exist',
+            msg: null
+        });
+    }
 
     Journal.findOneAndRemove(
         {

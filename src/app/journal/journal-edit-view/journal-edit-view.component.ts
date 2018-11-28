@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { JournalService } from '../journal.service';
 import { AuthService } from '../../auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 import { Journal } from '../Journal';
 
 @Component({
@@ -42,11 +43,17 @@ export class JournalEditViewComponent implements OnInit {
   constructor(
     private journalService: JournalService,
     private authService: AuthService,
+    private toastrService: ToastrService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    if (!this.authService.isLoggedIn()) {
+      this.toastrService.warning('You appear to not be logged in, let\'s fix that');
+      this.router.navigateByUrl('/auth/login');
+    }
+
     this.journal = {
       title: '',
       creator: '',
@@ -65,40 +72,60 @@ export class JournalEditViewComponent implements OnInit {
         this.route.params.subscribe(params => {
           this.journalID = params.journalID;
           // fetch journal
-          this.journalService.getJournal(this.journalID).subscribe(res => {
-            this.journal = res.data;
-          });
+          this.journalService.getJournal(this.journalID).subscribe(
+            res => {
+              this.journal = res.data;
+            },
+            err => {
+              this.toastrService.error(err.error.err);
+              this.router.navigateByUrl('/journal/create');
+            });
         });
       }
     });
   }
 
   create() {
-    let user = this.authService.getUserDetails();
-    if (user) {
-      this.journal.creator = user._id;
-      this.journalService.createJournal(this.journal).subscribe(res => {
-        if (!res.err)
-          this.router.navigateByUrl('/journal/view/' + res.data);
-        else
-          alert(res.err);
-      });
+    if (this.authService.isLoggedIn()) {
+      if (!this.journal.title)
+        this.toastrService.warning('Please enter a title for your journal');
+      else if (!this.journal.body)
+        this.toastrService.warning('Please write something in your journal');
+      else if (!this.journal.tags.length)
+        this.toastrService.warning('Please enter at least one tag for your journal');
+      else {
+        let user = this.authService.getUserDetails();
+        this.journal.creator = user._id;
+
+        this.journalService.createJournal(this.journal).subscribe(
+          res => {
+            this.toastrService.success(res.msg);
+            this.router.navigateByUrl('/journal/view/' + res.data);
+          },
+          err => {
+            this.toastrService.error(err.error.err);
+          });
+      }
     } else {
+      this.toastrService.warning('You appear to not be logged in, let\'s fix that');
       this.router.navigateByUrl('/auth/login');
     }
   }
 
   edit() {
-    let user = this.authService.getUserDetails();
-    if (user) {
+    if (this.authService.isLoggedIn()) {
+      let user = this.authService.getUserDetails();
       this.journal.creator = user._id;
-      this.journalService.editJournal(this.journal._id, this.journal).subscribe(res => {
-        if (!res.err)
+      this.journalService.editJournal(this.journal._id, this.journal).subscribe(
+        res => {
+          this.toastrService.success(res.msg);
           this.router.navigateByUrl('/journal/view/' + res.data);
-        else
-          alert(res.err);
-      });
+        },
+        err => {
+          this.toastrService.error(err.error.err);
+        });
     } else {
+      this.toastrService.warning('You appear to not be logged in, let\'s fix that');
       this.router.navigateByUrl('/auth/login');
     }
   }
