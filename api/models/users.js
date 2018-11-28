@@ -1,4 +1,3 @@
-// TODO: Make the secret an environment variable
 var mongoose = require('mongoose');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
@@ -41,7 +40,7 @@ userSchema.methods.generateJwt = function() {
 		email: this.email,
 		name: this.name,
 		exp: parseInt(expiry.getTime()/1000),
-		}, "secret_env_variable");
+		}, process.env.JWT_SECRET);
 };
 
 module.exports = mongoose.model('User', userSchema, 'users');
