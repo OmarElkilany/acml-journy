@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AuthService } from './auth/auth.service';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +13,9 @@ import { Router } from '@angular/router';
 })
 
 export class AppComponent implements OnInit, OnDestroy {
+
+  @ViewChild('snav') private element: MatSidenav;
+
   title = 'Journy';
   name = '';
   mobileQuery: MediaQueryList;
@@ -31,21 +36,25 @@ export class AppComponent implements OnInit, OnDestroy {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  goToRegister(): void {
+  goToRegister(): void {;
     this.router.navigate(['/auth/register']);
+    this.element.toggle();
   }
 
   goToLogin(): void {
     this.router.navigate(['/auth/login']);
+    this.element.toggle();
   }
 
   goToJournalCreation(): void {
     this.router.navigate(['/journal/create']);
+    this.element.toggle();
   }
 
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/']);
+    this.element.toggle();
   }
 
 }
