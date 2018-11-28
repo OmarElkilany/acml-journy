@@ -1,17 +1,34 @@
 # acml-journy
 The project for the acml course
 
+## Dependencies
+To install all the dependencies for the project:
+1. Go to the acml-journy folder.
+2. Run npm install.
+
+This step can be skipped if you are using docker-compose.
+
+## Bringing Up the Application with NPM
+Please follow these steps: (Working on Ubuntu)
+1. Navigate to the acml-journy folder.
+
+2. Create an environment file (environment.env) and export all the environment variables from it (A complete list of the variables and their purpose is provided below).
+
+3. Run: source ./environment.env in the terminal.
+
+4. Run npm start
 
 ## Bring Up the Application with Docker Compose
-Please follow these steps:
+Please follow these steps: (Working on Ubuntu)
 1. Navigate to the acml-journy folder.
 
 2. Create an environment file (environment.env) and export all the environment variables from it (A complete list of the variables and their purpose is provided below).
 
 3. Execute: source ./environment.env in the terminal.
 
-4. Execute: sudo -E docker-compose up --build (for Ubuntu) in the terminal.
+4. Execute: sudo -E docker-compose up --build in the terminal.
 
+## Environment Variables
 Environment Variables to Set:
 MONGO_URI	Defines the url to the mongo database.
 SERVER_HOST_PORT	Defines the external port on which the website is served.
