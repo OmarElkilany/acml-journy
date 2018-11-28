@@ -62,11 +62,10 @@ export class AuthService {
     }
   }
 
-  private request(method: 'post' | 'get', type: 'login' | 'register' | 'test',
+  private request(method: 'post' | 'get', type: 'login' | 'register',
     user?: TokenPayload): Observable<any> {
     let base;
-      console.log('Entered request method');
-      console.log('url: '+ this.serverBaseURL);
+
     if (method === 'post') {
       base = this.httpClient.post(this.serverBaseURL + type, user);
     } else {
@@ -92,17 +91,11 @@ export class AuthService {
   }
 
   public register(user: TokenPayload): Observable<any> {
-    console.log('Entered service register');
-    console.log(user);
     return this.request('post', 'register', user);
   }
 
   public login(user: TokenPayload): Observable<any> {
     return this.request('post', 'login', user);
-  }
-
-  public profile(): Observable<any> {
-    return this.request('get', 'test');
   }
 
 }
