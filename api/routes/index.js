@@ -6,16 +6,12 @@ const auth = jwt({
     userProperty: 'payload'
 });
 
-const testCtrl = require('../controllers/testCtrl');
 const authCtrl = require('../controllers/authentication');
 const journalCtrl = require('../controllers/journalCtrl');
 
 const router = express.Router();
 
 router.get('/', function (req, res, next) { res.send('Server is working, boy.'); });
-
-// test example
-router.get('/test', auth, testCtrl.testMethod);
 
 //------------- Authentication Routes ---------------//
 router.post('/register', authCtrl.register);
