@@ -20,7 +20,6 @@ const router = require('./api/routes/index');
 
 // create a link to angular build directory
 var distDir = path.join(__dirname, '/dist/');
-console.log('AAAAAAAAAAAAAAa' + distDir);
 app.use(express.static(distDir));
 
 // initialize passport
