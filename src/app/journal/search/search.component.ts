@@ -20,9 +20,10 @@ export class SearchComponent implements OnInit {
   journals: Journal[];
   tag: string;
   page = 1;
-  pageLimit = 5;
+  pageLimit = 1;
   pageSizeOptions = [1, 5, 10, 20];
   totalNumberOfPages: Number;
+  journalCount = 0;
   pageSelect = [];
 
 
@@ -71,15 +72,22 @@ export class SearchComponent implements OnInit {
   }
 
   search(title?: string, creator?: string, my_id?: string) {
+    this.journals = [];
     this.journalService.searchJournals(this.page, this.pageLimit, title, creator, this.tags, my_id).subscribe(res => {
       if (res.err) {
         //TODO: Handle error
       }
       console.log(res);
+      this.journalCount = res.data.total;
       this.totalNumberOfPages = Math.ceil(res.data.total / res.data.pageLimit);
       this.journals = res.data.docs;
       this.setupPageSelect(res.data.page);
     });
+  }
+
+  paginatorUpdate(event: any) {
+    this.page = event.pageIndex+1;
+    this.pageLimit = event.pageSize;
   }
 
   setupPageSelect(page: number) {
