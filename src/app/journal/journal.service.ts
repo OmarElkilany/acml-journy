@@ -28,4 +28,9 @@ export class JournalService {
   public deleteJournal(journalID: string, user: string): Observable<any> {
     return this.httpClient.delete(this.serverBaseURL + 'journal/deleteJournal/' + journalID + '/' + user);
   }
+
+  public searchJournals(page: number, pageLimit: number, title?: string, creator?: string, tags?: string[], user_id?: string): Observable<any> {
+    console.log(tags);
+    return this.httpClient.post(this.serverBaseURL + 'journal/search', {page, pageLimit, title, creator, tags, user_id});
+  }
 }

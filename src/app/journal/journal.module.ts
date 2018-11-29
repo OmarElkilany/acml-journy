@@ -5,6 +5,7 @@ import { JournalService } from './journal.service';
 import { SearchComponent } from './search/search.component';
 import { JournalViewComponent } from './journal-view/journal-view.component';
 import { JournalEditViewComponent } from './journal-edit-view/journal-edit-view.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { AuthService } from '../auth/auth.service';
 import { FormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill'
@@ -31,7 +32,8 @@ import {
     MatIconModule,
     FormsModule,
     QuillModule,
-    DisqusModule
+    DisqusModule,
+    MatPaginatorModule
   ],
   providers: [JournalService, AuthService]
 })
