@@ -180,23 +180,39 @@ module.exports.search = function (req, res, next) {
                 }
                 filters.push({creator: { "$in": users }});
 
+                Journal.paginate(
+                    addFilters(filters),
+                    {
+                        page: req.body.page,
+                        limit: req.body.pageLimit
+                    },
+                    (err, result) => {
+                        if(err) {
+                            return res.status(500).json({err:err});
+                            //TODO: Handle error
+                        }
+                        return res.status(200).json({data: result});
+                    }
+                )
             }
         );
     }
+    else {
 
 
-    Journal.paginate(
-        addFilters(filters),
-        {
-            page: req.body.page,
-            limit: req.body.pageLimit
-        },
-        (err, result) => {
-            if(err) {
-                return res.status(500).json({err:err});
-                //TODO: Handle error
+        Journal.paginate(
+            addFilters(filters),
+            {
+                page: req.body.page,
+                limit: req.body.pageLimit
+            },
+            (err, result) => {
+                if(err) {
+                    return res.status(500).json({err:err});
+                    //TODO: Handle error
+                }
+                return res.status(200).json({data: result});
             }
-            return res.status(200).json({data: result});
-        }
-    )
+        )
+    }
 }
