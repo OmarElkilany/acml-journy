@@ -1,5 +1,5 @@
 require('./api/config/DBConnection');
-const config = require('./api/config/config');
+
 const cors = require('cors');
 const express = require('express');
 const app = express();
