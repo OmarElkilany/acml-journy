@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Journal = mongoose.model('Journal');
+const User = mongoose.model('User');
 
 module.exports.getJournal = function (req, res, next) {
     Journal.findById(req.params.journalID, function (err, journal) {
@@ -90,9 +91,61 @@ module.exports.deleteJournal = function (req, res, next) {
 };
 
 module.exports.search = function (req, res, next) {
-    Journal.find(
-        {
-            tags: { "$all": req.body.tags }
+    // Journal.find(
+    //     {
+    //         tags: { "$all": req.body.tags },
+    //          (err, result) => {
+    //              return res.status(200).json({data: result});
+    //          }
+    //     }
+    // );
+
+    addFilters = function(filters) {
+        if(filters.length > 0) {
+            return {$and: filters};
         }
-    );
+        return {};
+    }
+
+    var filters = [];
+    console.log(req.body)
+    if(req.body.tags && req.body.tags.length > 0) {
+        filters.push({tags: { "$all": req.body.tags }});
+    }
+    if(req.body.title) {
+        filters.push({title: { $regex: '^' + req.body.title }});
+    }
+    if(req.body.user_id) {
+        filters.push({creator: req.body.user_id});
+    }
+
+    if(req.body.creator) {
+        User.find(
+            {email: { $regex: '[' + req.body.creator + '^@]+@[^\.]+\..+'}},
+            (err, users) => {
+                if(err) {
+                    return res.status(500).json({err:err});
+                    //TODO: Handle error
+                }
+                filters.push({creator: { "$in": users }});
+
+            }
+        );
+    }
+
+
+    Journal.paginate(
+        addFilters(filters),
+        {
+            page: req.body.page,
+            limit: req.body.pageLimit
+        },
+        (err, result) => {
+            if(err) {
+                return res.status(500).json({err:err});
+                //TODO: Handle error
+            }
+            return res.status(200).json({data: result});
+        }
+    )
 }

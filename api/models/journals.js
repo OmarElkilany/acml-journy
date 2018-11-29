@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
 var journalSchema = new mongoose.Schema(
     {
@@ -25,5 +26,5 @@ var journalSchema = new mongoose.Schema(
         }
     }
 );
-
+journalSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Journal', journalSchema, 'journals');

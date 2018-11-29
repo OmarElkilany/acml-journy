@@ -22,7 +22,7 @@ router.post('/login', authCtrl.login);
 //------------- Journal Routes ---------------//
 router.get('/journal/getJournal/:journalID', journalCtrl.getJournal);
 
-router.post('journal/search', journalCtrl.search);
+router.post('/journal/search', journalCtrl.search);
 
 router.post('/journal/createJournal', journalCtrl.createJournal);
 
