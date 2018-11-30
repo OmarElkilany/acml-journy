@@ -61,7 +61,7 @@
 <mat-card *ngFor="let journal of journals" routerLink="/journal/view/{{journal._id}}">
   Title: {{journal.title}}
   <br>
-  <mat-chip *ngFor="let tag of journal.tags">
+  <mat-chip *ngFor="let tag of journal.tags" routerLink="/journal/search/{{tag}}">
     {{ tag }}
   </mat-chip>
 </mat-card>
