@@ -25,11 +25,13 @@ Please follow these steps: (Working on Ubuntu)
 
 3. Run: `source ./environment.env` in the terminal.
 
-4. Run: `$(npm bin)/ts-node ./angular-dynamic-environment-script.ts` in the terminal.
+4. Run `npm install -D ts-node` to enable the execution of typescript in the terminal.
 
-5. Run: `sudo -E docker-compose up --build` or `docker-compose up --build` in the terminal.
+5. Run: `$(npm bin)/ts-node ./angular-dynamic-environment-script.ts` in the terminal.
 
-6. Open the localhost on the port you specified to view the website.
+6. Run: `sudo -E docker-compose up --build` or `docker-compose up --build` in the terminal.
+
+7. Open the localhost on the port you specified to view the website.
 
 ## Environment Variables
 Environment Variables to Set:
