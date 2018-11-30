@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { JournalService } from '../journal.service';
 import { AuthService } from '../../auth/auth.service';
 import { Journal } from '../Journal';
-import {PageEvent} from '@angular/material';
-
+import { ActivatedRoute } from '@angular/router'
 
 
 @Component({
@@ -28,7 +27,7 @@ export class SearchComponent implements OnInit {
   isLoggedIn: boolean;
 
 
-  constructor(private journalService: JournalService, private authService: AuthService) { }
+  constructor(private journalService: JournalService, private authService: AuthService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.tags = [];
@@ -38,6 +37,12 @@ export class SearchComponent implements OnInit {
     this.viewMine = false;
     this.tag = '';
     this.isLoggedIn = this.authService.isLoggedIn();
+    this.activatedRoute.params.subscribe(params => {
+      if(params.tag) {
+        this.tags.push(params.tag);
+        this.search();
+      }
+    })
   }
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
