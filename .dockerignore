@@ -2,5 +2,3 @@ docker-compose.yml
 node_modules
 dist
 environment.env
-angular-dynamic-environment-script.ts
-
