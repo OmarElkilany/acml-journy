@@ -11,9 +11,11 @@ Please follow these steps: (Working on Ubuntu)
 
 4. Run `npm install`
 
-5. Run `npm start`
+5. Start MongoDB on the url that you specified.
 
-6. Open the localhost on port 3000 to view the website.
+6. Run `npm start`
+
+7. Open the localhost on the port you specified to view the website.
 
 ## Bring Up the Application with Docker Compose
 Please follow these steps: (Working on Ubuntu)
