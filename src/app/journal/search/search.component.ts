@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
   journals: Journal[];
   tag: string;
   page = 1;
-  pageLimit = 1;
+  pageLimit = 5;
   pageSizeOptions = [1, 5, 10, 20];
   totalNumberOfPages: Number;
   journalCount = 0;

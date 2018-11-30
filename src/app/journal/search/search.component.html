@@ -1,13 +1,14 @@
-<mat-card>
-  <mat-card-header>
-    <div *ngIf="viewMine">
-      <mat-card-title>My Journals</mat-card-title>
+<mat-card class="pad">
+  <mat-card-header class="header">
+      <mat-card-title *ngIf="viewMine">My Journals</mat-card-title>
+      <mat-card-title *ngIf="!viewMine">Search</mat-card-title>
+
+    <div class="toTheRight" *ngIf="viewMine">
       <button mat-raised-button color="primary" (click)="toggleView()" mat-button>
         Search
       </button>
     </div>
-    <div *ngIf="!viewMine">
-      <mat-card-title *ngIf="!viewMine">Search</mat-card-title>
+    <div class="toTheRight" *ngIf="!viewMine">
       <button mat-raised-button color="primary" (click)="toggleView()" mat-button>
         My Journals
       </button>
@@ -36,17 +37,17 @@
           Add
         </button>
       </div>
-          </span>
+    </span>
 
-      <div>
-        <mat-chip-list>
-          <mat-chip *ngFor="let tag of tags" [removable]="true" (removed)="removeTag(tag)">
-            {{ tag }}
-            <mat-icon matChipRemove>cancel</mat-icon>
-          </mat-chip>
-        </mat-chip-list>
-      </div>
-
+    <div>
+      <mat-chip-list>
+        <mat-chip *ngFor="let tag of tags" [removable]="true" (removed)="removeTag(tag)">
+          {{ tag }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+<br>
     <button mat-raised-button color="primary" (click)="search(title, creator)" mat-button>
       Search
     </button>

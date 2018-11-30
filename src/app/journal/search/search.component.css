@@ -11,6 +11,19 @@
     width: 30%;
 }
 
+.toTheRight {
+    padding-left: 85%;
+    float: right;
+}
+
+.pad {
+    min-height: 13%;
+}
+
+.header {
+    min-width: 100%;
+}
+
 .tag {
     display: flex;
     flex-direction: column;
