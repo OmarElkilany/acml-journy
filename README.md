@@ -13,6 +13,8 @@ Please follow these steps: (Working on Ubuntu)
 
 5. Run `npm start`
 
+6. Open the localhost on port 3000 to view the website.
+
 ## Bring Up the Application with Docker Compose
 Please follow these steps: (Working on Ubuntu)
 1. Navigate to the acml-journy folder.
@@ -24,6 +26,8 @@ Please follow these steps: (Working on Ubuntu)
 4. Run: `$(npm bin)/ts-node ./angular-dynamic-environment-script.ts` in the terminal.
 
 5. Run: `sudo -E docker-compose up --build` or `docker-compose up --build` in the terminal.
+
+6. Open the localhost on the port you specified to view the website.
 
 ## Environment Variables
 Environment Variables to Set:
