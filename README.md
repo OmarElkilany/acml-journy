@@ -21,7 +21,9 @@ Please follow these steps: (Working on Ubuntu)
 
 3. Run: `source ./environment.env` in the terminal.
 
-4. Run: `sudo -E docker-compose up --build` in the terminal.
+4. Run: `$(npm bin)/ts-node ./angular-dynamic-environment-script.ts` in the terminal.
+
+5. Run: `sudo -E docker-compose up --build` or `docker-compose up --build` in the terminal.
 
 ## Environment Variables
 Environment Variables to Set:
