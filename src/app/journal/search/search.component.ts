@@ -25,6 +25,7 @@ export class SearchComponent implements OnInit {
   totalNumberOfPages: Number;
   journalCount = 0;
   pageSelect = [];
+  isLoggedIn: boolean;
 
 
   constructor(private journalService: JournalService, private authService: AuthService) { }
@@ -36,6 +37,7 @@ export class SearchComponent implements OnInit {
     this.creator = '';
     this.viewMine = false;
     this.tag = '';
+    this.isLoggedIn = this.authService.isLoggedIn();
   }
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);

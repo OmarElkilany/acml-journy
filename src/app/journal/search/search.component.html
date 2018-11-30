@@ -1,14 +1,14 @@
 <mat-card class="pad">
   <mat-card-header class="header">
-      <mat-card-title *ngIf="viewMine">My Journals</mat-card-title>
+      <mat-card-title *ngIf="viewMine && isLoggedIn">My Journals</mat-card-title>
       <mat-card-title *ngIf="!viewMine">Search</mat-card-title>
 
-    <div class="toTheRight" *ngIf="viewMine">
+    <div class="toTheRight" *ngIf="viewMine ">
       <button mat-raised-button color="primary" (click)="toggleView()" mat-button>
         Search
       </button>
     </div>
-    <div class="toTheRight" *ngIf="!viewMine">
+    <div class="toTheRight" *ngIf="!viewMine && isLoggedIn">
       <button mat-raised-button color="primary" (click)="toggleView()" mat-button>
         My Journals
       </button>
