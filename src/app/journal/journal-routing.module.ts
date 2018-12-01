@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { JournalViewComponent } from './journal-view/journal-view.component';
 import { JournalEditViewComponent } from './journal-edit-view/journal-edit-view.component';
-import { SearchComponent } from './search/search.component';
+import { JournalListView } from './journal-list-view/journal-list-view.component';
 
 const routes: Routes = [
   {
@@ -18,12 +18,12 @@ const routes: Routes = [
     component: JournalEditViewComponent
   },
   {
-    path: 'search',
-    component: SearchComponent
+    path: 'list',
+    component: JournalListView
   },
   {
-    path: 'search/:tag',
-    component: SearchComponent
+    path: 'list/:tag',
+    component: JournalListView
   }
 ];
 

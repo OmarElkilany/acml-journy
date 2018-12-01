@@ -6,11 +6,11 @@ import { ActivatedRoute } from '@angular/router'
 
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  selector: 'app-journal-list-view',
+  templateUrl: './journal-list-view.component.html',
+  styleUrls: ['./journal-list-view.component.css']
 })
-export class SearchComponent implements OnInit {
+export class JournalListView implements OnInit {
   tags: string[];
   title: string;
   creator: string;
@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit {
     this.tag = '';
     this.isLoggedIn = this.authService.isLoggedIn();
     this.activatedRoute.params.subscribe(params => {
-      if(params.tag) {
+      if (params.tag) {
         this.tags.push(params.tag);
         this.search();
       }
@@ -84,7 +84,6 @@ export class SearchComponent implements OnInit {
       if (res.err) {
         //TODO: Handle error
       }
-      console.log(res);
       this.journalCount = res.data.total;
       this.totalNumberOfPages = Math.ceil(res.data.total / res.data.pageLimit);
       this.journals = res.data.docs;
@@ -93,14 +92,14 @@ export class SearchComponent implements OnInit {
   }
 
   paginatorUpdate(event: any) {
-    this.page = event.pageIndex+1;
+    this.page = event.pageIndex + 1;
     this.pageLimit = event.pageSize;
   }
 
   setupPageSelect(page: number) {
     this.pageSelect.splice(0, this.pageSelect.length);
     for (let i = 0; i < this.totalNumberOfPages; i++) {
-      this.pageSelect.push(page + i);      
+      this.pageSelect.push(page + i);
     }
   }
 }

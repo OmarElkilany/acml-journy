@@ -30,7 +30,6 @@ export class JournalService {
   }
 
   public searchJournals(page: number, pageLimit: number, title?: string, creator?: string, tags?: string[], user_id?: string): Observable<any> {
-    console.log(tags);
-    return this.httpClient.post(this.serverBaseURL + 'journal/search', {page, pageLimit, title, creator, tags, user_id});
+    return this.httpClient.post(this.serverBaseURL + 'journal/search', { page, pageLimit, title, creator, tags, user_id });
   }
 }

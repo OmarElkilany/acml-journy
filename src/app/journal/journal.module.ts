@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JournalRoutingModule } from './journal-routing.module';
 import { JournalService } from './journal.service';
-import { SearchComponent } from './search/search.component';
+import { JournalListView } from './journal-list-view/journal-list-view.component';
 import { JournalViewComponent } from './journal-view/journal-view.component';
 import { JournalEditViewComponent } from './journal-edit-view/journal-edit-view.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -19,7 +19,7 @@ import {
 } from '@angular/material';
 
 @NgModule({
-  declarations: [JournalViewComponent, JournalEditViewComponent, SearchComponent],
+  declarations: [JournalViewComponent, JournalEditViewComponent, JournalListView],
   imports: [
     CommonModule,
     JournalRoutingModule,
