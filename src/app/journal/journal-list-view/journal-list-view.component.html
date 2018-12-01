@@ -61,7 +61,7 @@
       <mat-card class="clickable" *ngFor="let journal of journals" routerLink="/journal/view/{{journal._id}}">
         Title: {{journal.title}}
         <br>
-        <mat-chip class="clickable" *ngFor="let tag of journal.tags" (click)="addTag(tag); search(title, creator); viewMine? toggleView(): void(0);">
+        <mat-chip class="clickable" *ngFor="let tag of journal.tags" (click)="addTag(tag); search(title, creator); viewMine? toggleView(): page = page">
           {{ tag }}
         </mat-chip>
       </mat-card>
