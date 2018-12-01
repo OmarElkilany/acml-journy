@@ -51,6 +51,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this.element.toggle();
   }
 
+  goToJournalSearch(): void {
+    this.router.navigate(['/journal/list']);
+    this.element.toggle();
+  }
+
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/']);
