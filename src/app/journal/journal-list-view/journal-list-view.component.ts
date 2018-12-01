@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { JournalService } from '../journal.service';
 import { AuthService } from '../../auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 import { Journal } from '../Journal';
-import { ActivatedRoute } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 
 
 @Component({
@@ -27,7 +28,13 @@ export class JournalListView implements OnInit {
   isLoggedIn: boolean;
 
 
-  constructor(private journalService: JournalService, private authService: AuthService, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private journalService: JournalService,
+    private authService: AuthService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private toastrService: ToastrService
+  ) { }
 
   ngOnInit() {
     this.tags = [];
@@ -64,35 +71,35 @@ export class JournalListView implements OnInit {
       this.viewMine = !this.viewMine;
       this.journals = [];
       if (this.viewMine) {
-        if (!this.my_id) {
+        if (!this.my_id)
           this.my_id = this.authService.getUserDetails()._id;
-        }
-        if (this.my_id) {
-          this.search(undefined, undefined, this.my_id);
-          this.tags = [];
-          this.title = '';
-          this.creator = '';
-        } else {
-          //TODO: getUserDetails returned no email
-        }
+
+        this.tags = [];
+        this.title = '';
+        this.creator = '';
+
+        this.search(undefined, undefined, this.my_id);
       }
     }
     else {
-      //TODO: Not logged in, do something (Toastr and redirect to login)
+      this.toastrService.warning('You appear to not be logged in, let\'s fix that');
+      this.router.navigateByUrl('/auth/login');
     }
   }
 
   search(title?: string, creator?: string, my_id?: string) {
     this.journals = [];
-    this.journalService.searchJournals(this.page, this.pageLimit, title, creator, this.tags, my_id).subscribe(res => {
-      if (res.err) {
-        //TODO: Handle error
-      }
-      this.journalCount = res.data.total;
-      this.totalNumberOfPages = Math.ceil(res.data.total / res.data.pageLimit);
-      this.journals = res.data.docs;
-      this.setupPageSelect(res.data.page);
-    });
+    this.journalService.searchJournals(this.page, this.pageLimit, title, creator, this.tags, my_id).subscribe(
+      res => {
+        this.journalCount = res.data.total;
+        this.totalNumberOfPages = Math.ceil(res.data.total / res.data.pageLimit);
+        this.journals = res.data.docs;
+        this.setupPageSelect(res.data.page);
+      },
+      err => {
+        this.toastrService.error(err.error.err);
+        this.router.navigateByUrl('/journal/create');
+      });
   }
 
   paginatorUpdate(event: any) {
