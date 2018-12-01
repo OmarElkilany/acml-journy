@@ -20,8 +20,8 @@ export class JournalListView implements OnInit {
   journals: Journal[];
   tag: string;
   page = 1;
-  pageLimit = 5;
-  pageSizeOptions = [1, 5, 10, 20];
+  pageLimit = 6;
+  pageSizeOptions = [3, 6, 9, 12];
   totalNumberOfPages: Number;
   journalCount = 0;
   pageSelect = [];
@@ -56,7 +56,7 @@ export class JournalListView implements OnInit {
   }
 
   addTag(addedTag: string) {
-    if (this.tags.indexOf(addedTag) === -1)
+    if (addedTag && this.tags.indexOf(addedTag) === -1)
       this.tags.push(addedTag);
   }
 

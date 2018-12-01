@@ -84,7 +84,7 @@ export class JournalViewComponent implements OnInit {
   }
 
   addTag(addedTag: string, targetJournal: Journal) {
-    if (this.journal.tags.indexOf(addedTag) === -1)
+    if (addedTag && this.journal.tags.indexOf(addedTag) === -1)
       targetJournal.tags.push(addedTag);
   }
 

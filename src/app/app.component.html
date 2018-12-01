@@ -23,13 +23,15 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <div style="text-align:left">
-        <h1>
-          Welcome to {{ title }},
-          {{ authService.isLoggedIn()? authService.getUserDetails().name : 'Guest' }}!
-        </h1>
+      <div class="container">
+        <div style="text-align:left">
+          <h1>
+            Welcome to {{ title }},
+            {{ authService.isLoggedIn()? authService.getUserDetails().name : 'Guest' }}!
+          </h1>
+        </div>
+        <router-outlet></router-outlet>
       </div>
-      <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

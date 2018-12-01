@@ -15,53 +15,56 @@
     </div>
   </mat-card-header>
 
-  <mat-card-content *ngIf="!viewMine">
-    <span class="form-inline">
-      <div class="title">
-        <mat-form-field>
-          <input matInput type="text" [(ngModel)]="title" placeholder="Title">
-        </mat-form-field>
-      </div>
+  <mat-card-content>
+    <div *ngIf="!viewMine">
+      <span class="form-inline">
+        <div class="title">
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="title" placeholder="Title">
+          </mat-form-field>
+        </div>
 
-      <div class="title">
-        <mat-form-field>
-          <input matInput type="text" [(ngModel)]="creator" placeholder="Creator">
-        </mat-form-field>
-      </div>
+        <div class="title">
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="creator" placeholder="Creator">
+          </mat-form-field>
+        </div>
 
-      <div class="addTag">
-        <mat-form-field>
-          <input matInput type="text" [(ngModel)]="tag" placeholder="Tag">
-        </mat-form-field>
-        <button mat-raised-button color="primary" (click)="addTag(tag); tag = '';" mat-button>
-          Add
-        </button>
-      </div>
-    </span>
+        <div class="addTag">
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="tag" placeholder="Tag">
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="addTag(tag); tag = '';" mat-button>
+            Add
+          </button>
+        </div>
+      </span>
 
-    <div>
-      <mat-chip-list>
-        <mat-chip *ngFor="let tag of tags" [removable]="true" (removed)="removeTag(tag)">
-          {{ tag }}
-          <mat-icon matChipRemove>cancel</mat-icon>
-        </mat-chip>
-      </mat-chip-list>
+      <div>
+        <mat-chip-list>
+          <mat-chip *ngFor="let tag of tags" [removable]="true" (removed)="removeTag(tag)">
+            {{ tag }}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+      <br>
+      <button mat-raised-button color="primary" (click)="search(title, creator)" mat-button>
+        Search
+      </button>
     </div>
-    <br>
-    <button mat-raised-button color="primary" (click)="search(title, creator)" mat-button>
-      Search
-    </button>
+
+    <mat-paginator [length]="journalCount" [pageIndex]="page-1" [pageSize]="pageLimit" [pageSizeOptions]="pageSizeOptions"
+      (page)="paginatorUpdate($event); search(title, creator)">
+    </mat-paginator>
+    <div class="container">
+      <mat-card class="clickable" *ngFor="let journal of journals" routerLink="/journal/view/{{journal._id}}">
+        Title: {{journal.title}}
+        <br>
+        <mat-chip class="clickable" *ngFor="let tag of journal.tags" (click)="addTag(tag); search(title, creator); viewMine? toggleView(): void(0);">
+          {{ tag }}
+        </mat-chip>
+      </mat-card>
+    </div>
   </mat-card-content>
-</mat-card>
-
-<mat-paginator [length]="journalCount" [pageIndex]="page-1" [pageSize]="pageLimit" [pageSizeOptions]="pageSizeOptions"
-  (page)="paginatorUpdate($event); search(title, creator)">
-</mat-paginator>
-
-<mat-card *ngFor="let journal of journals" routerLink="/journal/view/{{journal._id}}">
-  Title: {{journal.title}}
-  <br>
-  <mat-chip *ngFor="let tag of journal.tags" (click)="addTag(tag); search(title, creator); viewMine? toggleView(): void(0);">
-    {{ tag }}
-  </mat-chip>
 </mat-card>

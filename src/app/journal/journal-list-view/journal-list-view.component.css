@@ -56,3 +56,18 @@
 .form-inline mat-form-field {
     margin: 5px 10px 5px 0;
 }
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.container > * {
+    width: 30%;
+    margin: 5px 10px 5px 0;
+}
+
+.clickable {
+    cursor: pointer;
+}
