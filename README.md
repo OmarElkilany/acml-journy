@@ -11,7 +11,19 @@ Please follow these steps: (Working on Ubuntu)
 
 4. Run `npm install`
 
-5. Run `npm start`
+5. Start MongoDB on the url that you specified.
+
+6. Run `npm start`
+
+7. Open the localhost on the port you specified to view the website.
+
+## Run the Application with Docker Run (Does not start the database)
+1. Navigate to the acml-journy folder.
+
+2. Run `docker build -t acml-server:prod --build-arg BACKEND_URI="[placeholder]" --build-arg DISQUS_SHORTNAME="[placeholder]" ./` setting BACKEND_URI and DISQUS_SHORTNAME with the values you need.
+
+3. Run `docker run --name acml-server -p 3000:3000  --env variable1=value1 --env variable2=value2 acml-server:prod` replacing each variable=value pair with an environment variable and value pair. For example, `--env JWT_SECRET=MY_SECRET`.
+
 
 ## Bring Up the Application with Docker Compose
 Please follow these steps: (Working on Ubuntu)
@@ -21,7 +33,9 @@ Please follow these steps: (Working on Ubuntu)
 
 3. Run: `source ./environment.env` in the terminal.
 
-4. Run: `sudo -E docker-compose up --build` in the terminal.
+4. Run: `sudo -E docker-compose up --build` or `docker-compose up --build` in the terminal.
+
+5. Open the localhost on the port you specified to view the website.
 
 ## Environment Variables
 Environment Variables to Set:

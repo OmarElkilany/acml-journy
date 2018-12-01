@@ -65,3 +65,6 @@ config.env
 
 # npm install output
 /dist
+
+# the used angular environment
+src/environments/environment.prod.ts
