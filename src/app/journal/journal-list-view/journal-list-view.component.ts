@@ -49,7 +49,8 @@ export class JournalListView implements OnInit {
   }
 
   addTag(addedTag: string) {
-    this.tags.push(addedTag);
+    if (this.tags.indexOf(addedTag) === -1)
+      this.tags.push(addedTag);
   }
 
   removeTag(removedTag: string) {
@@ -68,6 +69,9 @@ export class JournalListView implements OnInit {
         }
         if (this.my_id) {
           this.search(undefined, undefined, this.my_id);
+          this.tags = [];
+          this.title = '';
+          this.creator = '';
         } else {
           //TODO: getUserDetails returned no email
         }

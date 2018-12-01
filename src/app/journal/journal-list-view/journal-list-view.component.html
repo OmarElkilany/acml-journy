@@ -1,7 +1,7 @@
 <mat-card class="pad">
   <mat-card-header class="header">
-      <mat-card-title *ngIf="viewMine && isLoggedIn">My Journals</mat-card-title>
-      <mat-card-title *ngIf="!viewMine">Search</mat-card-title>
+    <mat-card-title *ngIf="viewMine && isLoggedIn">My Journals</mat-card-title>
+    <mat-card-title *ngIf="!viewMine">Search</mat-card-title>
 
     <div class="toTheRight" *ngIf="viewMine ">
       <button mat-raised-button color="primary" (click)="toggleView()" mat-button>
@@ -47,7 +47,7 @@
         </mat-chip>
       </mat-chip-list>
     </div>
-<br>
+    <br>
     <button mat-raised-button color="primary" (click)="search(title, creator)" mat-button>
       Search
     </button>
@@ -61,7 +61,7 @@
 <mat-card *ngFor="let journal of journals" routerLink="/journal/view/{{journal._id}}">
   Title: {{journal.title}}
   <br>
-  <mat-chip *ngFor="let tag of journal.tags" routerLink="/journal/list/{{tag}}">
+  <mat-chip *ngFor="let tag of journal.tags" (click)="addTag(tag); search(title, creator); viewMine? toggleView(): void(0);">
     {{ tag }}
   </mat-chip>
 </mat-card>
