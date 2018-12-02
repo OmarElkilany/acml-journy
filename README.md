@@ -1,6 +1,10 @@
 # acml-journy
 The project for the acml course.
 
+## Dependencies
+All required dependencies are handled by the npm package manager and are declared in the `package.json` file.
+To install the dependencies the `npm install` command is used as shown in the coming section. Note that in the case of docker, the command is declared in the Dockerfile and is called as part of the build.
+
 ## Bringing Up the Application with NPM
 Please follow these steps: (Working on Ubuntu)
 1. Navigate to the acml-journy folder.
