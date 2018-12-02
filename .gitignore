@@ -68,3 +68,6 @@ config.env
 
 # the used angular environment
 src/environments/environment.prod.ts
+
+# the used application environment
+environment.env
