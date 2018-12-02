@@ -7,10 +7,12 @@
     width: 50%;
 }
 
-.button {
-    float: right;
-}
-
 .clickable {
     cursor: pointer;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

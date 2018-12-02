@@ -49,7 +49,7 @@
         </mat-chip-list>
       </div>
       <br>
-      <button mat-raised-button color="primary" (click)="page=1;search(title, creator)" mat-button>
+      <button mat-raised-button color="primary" (click)="page = 1; search(title, creator);" mat-button>
         Search
       </button>
     </div>
@@ -61,7 +61,7 @@
       <mat-card class="clickable" *ngFor="let journal of journals" routerLink="/journal/view/{{journal._id}}">
         Title: {{journal.title}}
         <br>
-        <mat-chip class="clickable" *ngFor="let tag of journal.tags" (click)="addTag(tag); search(title, creator); viewMine? toggleView(): page = page">
+        <mat-chip class="clickable" *ngFor="let tag of journal.tags" (click)="viewMine? toggleView() : page = page; addTag(tag); page = 1; search();">
           {{ tag }}
         </mat-chip>
       </mat-card>
