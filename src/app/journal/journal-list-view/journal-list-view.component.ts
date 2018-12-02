@@ -71,14 +71,10 @@ export class JournalListView implements OnInit {
       this.viewMine = !this.viewMine;
       this.journals = [];
       if (this.viewMine) {
-        if (!this.my_id)
-          this.my_id = this.authService.getUserDetails()._id;
-
         this.tags = [];
         this.title = '';
         this.creator = '';
-
-        this.search(undefined, undefined, this.my_id);
+        this.search();
       }
     }
     else {
@@ -88,6 +84,14 @@ export class JournalListView implements OnInit {
   }
 
   search(title?: string, creator?: string, my_id?: string) {
+    if (this.viewMine) {
+      if (this.authService.isLoggedIn())
+        my_id = this.authService.getUserDetails()._id;
+      else {
+        this.toastrService.warning('You appear to not be logged in, let\'s fix that');
+        this.router.navigateByUrl('/auth/login');
+      }
+    }
     this.journals = [];
     this.journalService.searchJournals(this.page, this.pageLimit, title, creator, this.tags, my_id).subscribe(
       res => {
