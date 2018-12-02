@@ -50,6 +50,8 @@ export class JournalListView implements OnInit {
         this.search();
       }
     })
+
+    this.search();
   }
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
@@ -67,15 +69,13 @@ export class JournalListView implements OnInit {
 
   toggleView() {
     if (this.authService.isLoggedIn()) {
-      this.page = 1;
       this.viewMine = !this.viewMine;
+      this.page = 1;
       this.journals = [];
-      if (this.viewMine) {
-        this.tags = [];
-        this.title = '';
-        this.creator = '';
-        this.search();
-      }
+      this.tags = [];
+      this.title = '';
+      this.creator = '';
+      this.search();
     }
     else {
       this.toastrService.warning('You appear to not be logged in, let\'s fix that');
