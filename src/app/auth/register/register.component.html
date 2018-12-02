@@ -1,0 +1,23 @@
+<mat-card width="60%">
+  <mat-card-header>
+    <mat-card-title>Sign Up!</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="registeration-container">
+      <mat-form-field>
+        <input matInput type="text" [(ngModel)]="userCredentials.email" placeholder="Email">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="text" [(ngModel)]="userCredentials.name" placeholder="Name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="password" [(ngModel)]="userCredentials.password" placeholder="Password">
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button (click)="register()" mat-button>Register</button>
+  </mat-card-actions>
+</mat-card>

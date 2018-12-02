@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ journal.title }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <br />
+
+    <quill-editor [(ngModel)]="journal.body" [modules]="{toolbar: false}" disabled></quill-editor>
+
+    <br />
+
+    <mat-chip-list>
+      <mat-chip class="clickable" *ngFor="let tag of journal.tags" routerLink="/journal/list/{{tag}}">
+        {{ tag }}
+      </mat-chip>
+    </mat-chip-list>
+  </mat-card-content>
+
+  <mat-card-actions class="actions">
+    <button mat-raised-button color="primary" (click)="edit()" mat-button *ngIf="owner">Edit</button>
+    <button mat-raised-button color="warn" (click)="delete()" mat-button *ngIf="owner">Delete</button>
+  </mat-card-actions>
+
+  <disqus *ngIf="journal._id" [identifier]="journal._id"></disqus>
+</mat-card>

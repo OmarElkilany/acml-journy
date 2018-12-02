@@ -57,5 +57,17 @@ typings/
 # dotenv environment variables file
 .env
 
+# docker-compose environment file
+config.env
+
 # next.js build output
 .next
+
+# npm install output
+/dist
+
+# the used angular environment
+src/environments/environment.prod.ts
+
+# the used application environment
+environment.env

@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container > * {
+    width: 50%;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

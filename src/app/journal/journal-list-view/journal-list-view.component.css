@@ -1,0 +1,71 @@
+.title {
+    display: flex;
+    flex-direction: column;
+}
+
+.title > * {
+    width: 80%;
+}
+
+.addTag > * {
+    width: 30%;
+}
+
+.pad {
+    min-height: 13%;
+}
+
+.header {
+    min-width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tag {
+    display: flex;
+    flex-direction: column;
+}
+
+.tag > * {
+    width: 20%;
+}
+
+.button {
+    float: right;
+}
+
+/* Style the form - display items horizontally */
+.form-inline { 
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+/* Add some margins for each element*/
+.form-inline mat-chip {
+    margin: 5px 10px 5px 0;
+}
+
+.form-inline button {
+    margin: 5px 10px 5px 0;
+}
+
+.form-inline mat-form-field {
+    margin: 5px 10px 5px 0;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.container > * {
+    width: 30%;
+    margin: 5px 10px 5px 0;
+}
+
+.clickable {
+    cursor: pointer;
+}

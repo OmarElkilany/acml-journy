@@ -1,0 +1,22 @@
+version: '2.1'
+services:
+ server:
+  build: 
+   context: ./
+   dockerfile: ./Dockerfile
+   args:
+    - BACKEND_URI=${BACKEND_URI}
+    - DISQUS_SHORTNAME=${DISQUS_SHORTNAME}
+  environment: 
+    - MONGO_URI=${MONGO_URI}
+    - JWT_SECRET=${JWT_SECRET}
+  depends_on:
+   database:
+    condition: service_healthy
+  ports:
+   - "${SERVER_HOST_PORT}:${SERVER_CONTAINER_PORT}"
+
+ database:
+  image: healthcheck/mongo
+  ports:
+   - "${MONGO_HOST_PORT}:${MONGO_CONTAINER_PORT}"
